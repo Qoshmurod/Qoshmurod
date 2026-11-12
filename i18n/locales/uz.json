@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "news": "Yangiliklar",
+    "contacts": "Aloqa",
+    "menu": "Menyu",
+    "language": "Til"
+  },
+  "hero": {
+    "fallback": "Klinikamiz haqida ma’lumot, so‘nggi yangiliklar va aloqa ma’lumotlari",
+    "call": "Qo‘ng‘iroq qilish",
+    "telegram": "Telegram’da yozish",
+    "hours": "Ish vaqti"
+  },
+  "about": {
+    "title": "Biz haqimizda"
+  },
+  "news": {
+    "title": "Yangiliklar",
+    "subtitle": "Klinikamiz hayotidagi so‘nggi voqealar va foydali maqolalar",
+    "latest": "So‘nggi yangiliklar",
+    "all": "Barcha yangiliklar",
+    "readMore": "Batafsil",
+    "empty": "Hozircha yangiliklar yo‘q",
+    "back": "Barcha yangiliklar",
+    "prev": "Oldingi",
+    "next": "Keyingi",
+    "page": "{page} / {total}-sahifa"
+  },
+  "contacts": {
+    "title": "Aloqa",
+    "subtitle": "Savollaringiz bo‘lsa, biz bilan bog‘laning",
+    "address": "Manzil",
+    "phone": "Telefon",
+    "hours": "Ish vaqti",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "map": "Xaritada ko‘rish"
+  },
+  "footer": {
+    "rights": "Barcha huquqlar himoyalangan"
+  },
+  "error": {
+    "notFound": "Sahifa topilmadi",
+    "notFoundText": "Siz qidirgan sahifa mavjud emas yoki o‘chirilgan.",
+    "unavailable": "Sayt vaqtincha ishlamayapti",
+    "unavailableText": "Birozdan so‘ng qayta urinib ko‘ring.",
+    "home": "Bosh sahifaga"
+  }
+}

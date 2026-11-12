@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About us",
+    "news": "News",
+    "contacts": "Contacts",
+    "menu": "Menu",
+    "language": "Language"
+  },
+  "hero": {
+    "fallback": "About our clinic, the latest news and how to reach us",
+    "call": "Call us",
+    "telegram": "Message on Telegram",
+    "hours": "Working hours"
+  },
+  "about": {
+    "title": "About us"
+  },
+  "news": {
+    "title": "News",
+    "subtitle": "Latest events at the clinic and useful articles",
+    "latest": "Latest news",
+    "all": "All news",
+    "readMore": "Read more",
+    "empty": "No news yet",
+    "back": "All news",
+    "prev": "Previous",
+    "next": "Next",
+    "page": "Page {page} of {total}"
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "Have a question? Get in touch",
+    "address": "Address",
+    "phone": "Phone",
+    "hours": "Working hours",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "map": "Show on map"
+  },
+  "footer": {
+    "rights": "All rights reserved"
+  },
+  "error": {
+    "notFound": "Page not found",
+    "notFoundText": "The page you are looking for does not exist or was removed.",
+    "unavailable": "The website is temporarily unavailable",
+    "unavailableText": "Please try again a little later.",
+    "home": "Go to home page"
+  }
+}
