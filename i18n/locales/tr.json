@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "home": "Ana sayfa",
+    "about": "Hakkımızda",
+    "news": "Haberler",
+    "contacts": "İletişim",
+    "menu": "Menü",
+    "language": "Dil"
+  },
+  "hero": {
+    "fallback": "Kliniğimiz hakkında bilgi, son haberler ve iletişim bilgileri",
+    "call": "Bizi arayın",
+    "telegram": "Telegram’dan yazın",
+    "hours": "Çalışma saatleri"
+  },
+  "about": {
+    "title": "Hakkımızda"
+  },
+  "news": {
+    "title": "Haberler",
+    "subtitle": "Kliniğimizdeki son gelişmeler ve faydalı makaleler",
+    "latest": "Son haberler",
+    "all": "Tüm haberler",
+    "readMore": "Devamını oku",
+    "empty": "Henüz haber yok",
+    "back": "Tüm haberler",
+    "prev": "Önceki",
+    "next": "Sonraki",
+    "page": "Sayfa {page} / {total}"
+  },
+  "contacts": {
+    "title": "İletişim",
+    "subtitle": "Sorularınız için bize ulaşın",
+    "address": "Adres",
+    "phone": "Telefon",
+    "hours": "Çalışma saatleri",
+    "telegram": "Telegram",
+    "instagram": "Instagram",
+    "map": "Haritada göster"
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır"
+  },
+  "error": {
+    "notFound": "Sayfa bulunamadı",
+    "notFoundText": "Aradığınız sayfa mevcut değil veya kaldırıldı.",
+    "unavailable": "Site geçici olarak kullanılamıyor",
+    "unavailableText": "Lütfen biraz sonra tekrar deneyin.",
+    "home": "Ana sayfaya dön"
+  }
+}

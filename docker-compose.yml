@@ -1,0 +1,19 @@
+# The website runs next to Clinika on the same server and joins Clinika's docker network,
+# so it reaches the API as http://backend:4000 without exposing anything new.
+# Start Clinika first (it creates the network), then: docker compose up -d --build
+services:
+  website:
+    build: .
+    restart: unless-stopped
+    environment:
+      NUXT_BACKEND_URL: ${NUXT_BACKEND_URL:-http://backend:4000/api/v1}
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3001}
+    ports:
+      - "${WEBSITE_BIND:-127.0.0.1}:${WEBSITE_PORT:-3001}:3000"
+    networks:
+      - clinika
+
+networks:
+  clinika:
+    external: true
+    name: ${CLINIKA_NETWORK:-shifoxona_default}
