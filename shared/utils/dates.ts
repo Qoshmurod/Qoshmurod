@@ -18,6 +18,6 @@ export function formatLongDate(iso: string | null | undefined, locale: string): 
   const d = new Date(time + TASHKENT_OFFSET_MS)
   const day = d.getUTCDate()
   const year = d.getUTCFullYear()
-  const month = (MONTHS[locale] ?? MONTHS.uz)[d.getUTCMonth()]
+  const month = (MONTHS[locale] ?? MONTHS.uz ?? [])[d.getUTCMonth()] ?? ''
   return locale === 'uz' || !MONTHS[locale] ? `${day}-${month}, ${year}` : `${day} ${month} ${year}`
 }
