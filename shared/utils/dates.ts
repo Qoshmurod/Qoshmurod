@@ -4,6 +4,7 @@
  */
 const MONTHS: Record<string, string[]> = {
   uz: ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'],
+  'uz-cyrl': ['январ', 'феврал', 'март', 'апрел', 'май', 'июн', 'июл', 'август', 'сентябр', 'октябр', 'ноябр', 'декабр'],
   ru: ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'],
   en: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
   tr: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
@@ -19,5 +20,5 @@ export function formatLongDate(iso: string | null | undefined, locale: string): 
   const day = d.getUTCDate()
   const year = d.getUTCFullYear()
   const month = (MONTHS[locale] ?? MONTHS.uz ?? [])[d.getUTCMonth()] ?? ''
-  return locale === 'uz' || !MONTHS[locale] ? `${day}-${month}, ${year}` : `${day} ${month} ${year}`
+  return locale === 'uz' || locale === 'uz-cyrl' || !MONTHS[locale] ? `${day}-${month}, ${year}` : `${day} ${month} ${year}`
 }

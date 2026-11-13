@@ -22,7 +22,10 @@ Brauzer → nginx (klinika.uz) → website (Nuxt, SSR) → Clinika backend (/api
 - Sahifalar serverda tayyorlanadi (SSR), Google ularni to‘liq o‘qiydi: `sitemap.xml`, `robots.txt`, har til uchun `hreflang` havolalari, Telegram/Facebook uchun preview rasmlari bor.
 - Brauzer Clinika API'siga to‘g‘ridan-to‘g‘ri murojaat qilmaydi: hamma so‘rov sayt serveri orqali o‘tadi (`server/` papkasi). Shuning uchun Clinika'da CORS sozlash kerak emas.
 - Sayt faqat ochiq ma'lumotni oladi: chop etilgan maqolalar va klinika aloqa ma'lumotlari. Bemorlar, to‘lovlar, xodimlar saytga hech qachon chiqmaydi.
-- Havolalar: `/` (o‘zbekcha), `/ru`, `/en`, `/tr`; yangiliklar `/news`, maqola `/news/<havola>`.
+- Havolalar: `/` (o‘zbekcha), `/uz-cyrl` (o‘zbekcha kirill, o‘zbekcha matndan avtomatik), `/ru`, `/en`, `/tr`; yangiliklar `/news`, maqola `/news/<havola>`.
+- Yangiliklar: bosh sahifada eng so‘nggisi katta qilib chiqadi; `/news` da qidiruv (kirill yoki lotin harfida yozsa ham topadi), maqolada o‘qish vaqti, Telegram/Facebook/WhatsApp'da ulashish va "Boshqa yangiliklar".
+- RSS: `/feed/uz.xml`, `/feed/ru.xml` … — Telegram kanaliga avtomatik post qiluvchi botlar va yangilik o‘quvchilar uchun.
+- Sayt chop etilgan maqolalar ro‘yxatini 1 daqiqa xotirada saqlaydi: Clinika'da chop etilgan maqola saytda ko‘pi bilan 1 daqiqada chiqadi.
 
 ## Serverga o‘rnatish (Clinika bilan bir serverda)
 
@@ -87,7 +90,7 @@ app/
   pages/            index.vue, news/index.vue, news/[slug].vue
   components/       SiteHeader, SiteFooter, ArticleCard, ArticleBody, LangSwitcher …
   composables/      useSite (klinika ma'lumoti), useFormatDate
-  assets/css/       Tailwind CSS v4 va ranglar
+  assets/css/       Tailwind CSS v4 + Nuxt UI (Clinika dasturi bilan bir xil mavzu, app.config.ts)
 server/
   api/              /api/info, /api/articles, /api/articles/:slug — Clinika API'ga proksi
   routes/           /media/logo, /media/cover/:id, sitemap.xml, robots.txt
