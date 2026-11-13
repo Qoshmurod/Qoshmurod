@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     baseUrl: process.env.NUXT_PUBLIC_SITE_URL || 'http://localhost:3001',
     locales: [
       { code: 'uz', language: 'uz-Latn-UZ', name: 'O‘zbekcha', file: 'uz.json' },
+      { code: 'uz-cyrl', language: 'uz-Cyrl-UZ', name: 'Ўзбекча', file: 'uz-cyrl.json' },
       { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru.json' },
       { code: 'en', language: 'en-US', name: 'English', file: 'en.json' },
       { code: 'tr', language: 'tr-TR', name: 'Türkçe', file: 'tr.json' },

@@ -1,14 +1,17 @@
 <script setup lang="ts">
 import type { ArticleFull } from '#shared/types'
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const route = useRoute()
 const localePath = useLocalePath()
 const config = useRuntimeConfig()
 const formatDate = useFormatDate()
 const slug = computed(() => String(route.params.slug))
 
-const { data: article, error } = await useFetch<ArticleFull>(() => `/api/articles/${slug.value}`, { key: computed(() => `article-${slug.value}`) })
+const { data: article, error } = await useFetch<ArticleFull>(() => `/api/articles/${slug.value}`, {
+  query: { locale },
+  key: computed(() => `article-${locale.value}-${slug.value}`),
+})
 if (error.value || !article.value) {
   throw createError({ statusCode: error.value?.statusCode ?? 404, statusMessage: 'Not found', fatal: true })
 }
