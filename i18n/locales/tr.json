@@ -5,7 +5,8 @@
     "news": "Haberler",
     "contacts": "İletişim",
     "menu": "Menü",
-    "language": "Dil"
+    "language": "Dil",
+    "theme": "Tema"
   },
   "hero": {
     "fallback": "Kliniğimiz hakkında bilgi, son haberler ve iletişim bilgileri",
@@ -26,7 +27,20 @@
     "back": "Tüm haberler",
     "prev": "Önceki",
     "next": "Sonraki",
-    "page": "Sayfa {page} / {total}"
+    "page": "Sayfa {page} / {total}",
+    "search": "Haberlerde ara",
+    "searchLabel": "Ara",
+    "results": "{n} sonuç",
+    "noResults": "Sonuç bulunamadı",
+    "noResultsText": "Başka bir kelime deneyin.",
+    "clear": "Temizle",
+    "minRead": "{n} dk okuma",
+    "share": "Paylaş",
+    "copyLink": "Bağlantıyı kopyala",
+    "copied": "Bağlantı kopyalandı",
+    "related": "Diğer haberler",
+    "latestOne": "En yeni",
+    "rss": "RSS aboneliği"
   },
   "contacts": {
     "title": "İletişim",
