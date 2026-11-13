@@ -10,7 +10,8 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "test": "node --test --experimental-strip-types tests/*.test.ts"
+    "test": "node --test --experimental-strip-types tests/*.test.ts",
+    "gen:uz-cyrl": "node --experimental-strip-types scripts/translit-uz-cyrl.ts"
   },
   "engines": {
     "node": ">=22.6"
