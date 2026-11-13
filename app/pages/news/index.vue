@@ -22,25 +22,22 @@ useSeoMeta({
 
 <template>
   <div>
-    <section class="bg-gradient-to-b from-brand-50 to-white">
-      <div class="container-site space-y-4 py-16 sm:py-20">
+    <section class="border-b border-default bg-muted">
+      <div class="container-site space-y-3 py-12 sm:py-16">
         <p class="eyebrow">{{ t('nav.news') }}</p>
-        <h1 class="text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl">{{ t('news.title') }}</h1>
-        <p class="max-w-2xl text-lg text-slate-600">{{ t('news.subtitle') }}</p>
+        <h1 class="text-3xl font-bold tracking-tight text-highlighted sm:text-4xl">{{ t('news.title') }}</h1>
+        <p class="max-w-2xl text-muted">{{ t('news.subtitle') }}</p>
       </div>
     </section>
-    <section class="container-site pb-24">
-      <div v-if="news?.items.length" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <section class="container-site py-10 pb-20">
+      <div v-if="news?.items.length" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         <ArticleCard v-for="a in news.items" :key="a.id" :article="a" />
       </div>
-      <div v-else class="rounded-3xl border border-dashed border-slate-300 px-6 py-20 text-center">
-        <AppIcon name="newspaper" class="mx-auto size-12 text-slate-300" />
-        <p class="mt-4 text-lg font-semibold text-slate-500">{{ t('news.empty') }}</p>
-      </div>
-      <nav v-if="totalPages > 1" class="mt-12 flex items-center justify-center gap-3" aria-label="Pagination">
-        <NuxtLink v-if="page > 1" :to="pageLink(page - 1)" class="btn-ghost"><AppIcon name="arrowLeft" class="size-4" />{{ t('news.prev') }}</NuxtLink>
-        <span class="px-2 text-sm font-semibold text-slate-500">{{ t('news.page', { page, total: totalPages }) }}</span>
-        <NuxtLink v-if="page < totalPages" :to="pageLink(page + 1)" class="btn-ghost">{{ t('news.next') }}<AppIcon name="arrowRight" class="size-4" /></NuxtLink>
+      <UEmpty v-else icon="i-lucide-newspaper" :title="t('news.empty')" variant="outline" />
+      <nav v-if="totalPages > 1" class="mt-10 flex items-center justify-center gap-3" aria-label="Pagination">
+        <UButton v-if="page > 1" :to="pageLink(page - 1)" color="neutral" variant="outline" icon="i-lucide-arrow-left" :label="t('news.prev')" />
+        <span class="px-2 text-sm text-muted">{{ t('news.page', { page, total: totalPages }) }}</span>
+        <UButton v-if="page < totalPages" :to="pageLink(page + 1)" color="neutral" variant="outline" trailing-icon="i-lucide-arrow-right" :label="t('news.next')" />
       </nav>
     </section>
   </div>

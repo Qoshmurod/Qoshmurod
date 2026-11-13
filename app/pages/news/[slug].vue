@@ -29,30 +29,23 @@ useSeoMeta({
 </script>
 
 <template>
-  <article v-if="article" class="pb-24">
-    <header class="bg-gradient-to-b from-brand-50 to-white">
-      <div class="container-site max-w-3xl space-y-6 pt-12 pb-10 sm:pt-16">
-        <NuxtLink :to="localePath('/news')" class="inline-flex items-center gap-2 text-sm font-bold text-brand-700 hover:text-brand-900">
-          <AppIcon name="arrowLeft" class="size-4" />
-          {{ t('news.back') }}
-        </NuxtLink>
-        <h1 class="text-3xl leading-tight font-extrabold tracking-tight text-balance text-slate-900 sm:text-5xl">{{ article.title }}</h1>
-        <p class="flex items-center gap-2 text-sm font-semibold text-slate-500">
-          <AppIcon name="calendar" class="size-4" />
+  <article v-if="article" class="pb-20">
+    <header class="border-b border-default bg-muted">
+      <div class="container-site max-w-3xl space-y-5 pt-8 pb-10 sm:pt-12">
+        <UButton :to="localePath('/news')" variant="link" icon="i-lucide-arrow-left" :label="t('news.back')" class="px-0" />
+        <h1 class="text-3xl leading-tight font-bold tracking-tight text-balance text-highlighted sm:text-4xl">{{ article.title }}</h1>
+        <p class="flex items-center gap-1.5 text-sm text-muted">
+          <UIcon name="i-lucide-calendar" class="size-4" />
           <time :datetime="article.publishedAt ?? undefined">{{ formatDate(article.publishedAt) }}</time>
         </p>
-        <p v-if="article.excerpt" class="text-xl leading-relaxed text-slate-600">{{ article.excerpt }}</p>
+        <p v-if="article.excerpt" class="text-lg text-toned">{{ article.excerpt }}</p>
       </div>
     </header>
-    <div class="container-site max-w-3xl space-y-10">
-      <img v-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-3xl object-cover shadow-xl shadow-slate-900/10">
+    <div class="container-site max-w-3xl space-y-8 pt-10">
+      <img v-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-xl object-cover ring-1 ring-default">
       <ArticleBody :content="article.content" />
-      <div class="border-t border-slate-200 pt-8">
-        <NuxtLink :to="localePath('/news')" class="btn-ghost">
-          <AppIcon name="arrowLeft" class="size-4" />
-          {{ t('news.back') }}
-        </NuxtLink>
-      </div>
+      <USeparator />
+      <UButton :to="localePath('/news')" color="neutral" variant="outline" icon="i-lucide-arrow-left" :label="t('news.back')" />
     </div>
   </article>
 </template>

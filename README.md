@@ -87,7 +87,7 @@ app/
   pages/            index.vue, news/index.vue, news/[slug].vue
   components/       SiteHeader, SiteFooter, ArticleCard, ArticleBody, LangSwitcher …
   composables/      useSite (klinika ma'lumoti), useFormatDate
-  assets/css/       Tailwind CSS v4 va ranglar
+  assets/css/       Tailwind CSS v4 + Nuxt UI (Clinika dasturi bilan bir xil mavzu, app.config.ts)
 server/
   api/              /api/info, /api/articles, /api/articles/:slug — Clinika API'ga proksi
   routes/           /media/logo, /media/cover/:id, sitemap.xml, robots.txt

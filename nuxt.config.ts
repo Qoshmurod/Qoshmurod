@@ -1,14 +1,11 @@
-import tailwindcss from '@tailwindcss/vite'
-
 // The website is rendered on the server (SEO). It talks to the Clinika backend only from the server side
 // (server/ routes), so the browser never calls the clinic API and no CORS setup is needed there.
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-01',
   devtools: { enabled: false },
-  modules: ['@nuxtjs/i18n'],
+  modules: ['@nuxt/ui', '@nuxtjs/i18n'],
   css: ['~/assets/css/main.css'],
-  vite: { plugins: [tailwindcss()] },
-
+  
   runtimeConfig: {
     // NUXT_BACKEND_URL — Clinika API as seen from this server (docker: http://backend:4000/api/v1)
     backendUrl: 'http://localhost:4000/api/v1',
@@ -34,14 +31,24 @@ export default defineNuxtConfig({
   app: {
     head: {
       htmlAttrs: { lang: 'uz' },
-      meta: [{ name: 'theme-color', content: '#0f766e' }],
-      link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-        { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-        { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap' },
-      ],
+      meta: [{ name: 'theme-color', content: '#0d9488' }],
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     },
+  },
+
+  // Same look as the Clinika staff app: Nuxt UI, teal/slate palette (app.config.ts), Inter, light/dark by system setting
+  colorMode: {
+    preference: 'system',
+    fallback: 'light',
+    storageKey: 'clinika-website-color-mode',
+  },
+  ui: {
+    theme: {
+      colors: ['primary', 'secondary', 'success', 'info', 'warning', 'error', 'neutral'],
+    },
+  },
+  fonts: {
+    families: [{ name: 'Inter', provider: 'google', weights: [400, 500, 600, 700, 800] }],
   },
 
   routeRules: {
