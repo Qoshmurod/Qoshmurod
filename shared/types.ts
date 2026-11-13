@@ -21,6 +21,10 @@ export interface ArticleSummary {
   title: string
   excerpt: string | null
   hasCover: boolean
+  /** Video (MP4, up to 10 minutes), streamed through /media/video/:id */
+  hasVideo?: boolean
+  /** Seconds. */
+  videoDuration?: number | null
   publishedAt: string | null
   updatedAt: string
 }

@@ -28,7 +28,7 @@ const instagram = computed(() => socialUrl(site.value?.instagram, 'instagram.com
       </div>
     </div>
     <div class="border-t border-default">
-      <p class="container-site py-5 text-xs text-dimmed">© {{ year }} {{ site?.hospitalName }}. {{ t('footer.rights') }}.</p>
+      <p class="container-site py-5 text-xs text-dimmed">© {{ year }}{{ site?.hospitalName ? ` ${site.hospitalName}` : "" }}. {{ t('footer.rights') }}.</p>
     </div>
   </footer>
 </template>

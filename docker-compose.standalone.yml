@@ -1,0 +1,13 @@
+# The website on its own server (Clinika runs elsewhere): it reads news over HTTPS from Clinika's public API.
+# In .env set NUXT_BACKEND_URL to the address shown in Clinika: Sozlamalar → Veb-sayt → "Sayt uchun API manzili"
+# (for example https://app.klinika.uz/api/v1), then:
+#   docker compose -f docker-compose.standalone.yml up -d --build
+services:
+  website:
+    build: .
+    restart: unless-stopped
+    environment:
+      NUXT_BACKEND_URL: ${NUXT_BACKEND_URL:?set NUXT_BACKEND_URL in .env to the Clinika API address}
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3001}
+    ports:
+      - "${WEBSITE_BIND:-127.0.0.1}:${WEBSITE_PORT:-3001}:3000"

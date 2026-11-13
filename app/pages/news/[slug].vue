@@ -17,6 +17,7 @@ if (error.value || !article.value) {
 }
 
 const cover = computed(() => (article.value ? articleCover(article.value) : null))
+const video = computed(() => (article.value ? articleVideo(article.value) : null))
 const site = config.public.siteUrl.replace(/\/+$/, '')
 const pageUrl = computed(() => `${site}${localePath(`/news/${slug.value}`)}`)
 const minutes = computed(() => readingMinutes(article.value?.content))
@@ -42,6 +43,9 @@ useHead(() => ({
           dateModified: article.value.updatedAt,
           mainEntityOfPage: pageUrl.value,
           ...(cover.value ? { image: [`${site}${cover.value}`] } : {}),
+          ...(video.value
+            ? { video: { '@type': 'VideoObject', name: article.value.title, contentUrl: `${site}${video.value}`, uploadDate: article.value.publishedAt ?? undefined, ...(cover.value ? { thumbnailUrl: `${site}${cover.value}` } : {}), ...(article.value.videoDuration ? { duration: `PT${article.value.videoDuration}S` } : {}) } }
+            : {}),
           publisher: { '@type': 'Organization', name: clinic.value?.hospitalName ?? '', ...(clinic.value?.hasLogo ? { logo: { '@type': 'ImageObject', url: `${site}/media/logo` } } : {}) },
         }),
       }]
@@ -81,7 +85,16 @@ useSeoMeta({
     </header>
 
     <div class="container-site max-w-3xl space-y-8 pt-8">
-      <img v-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-xl object-cover ring-1 ring-default" fetchpriority="high">
+      <video
+        v-if="video"
+        :src="video"
+        :poster="cover ?? undefined"
+        controls
+        playsinline
+        preload="metadata"
+        class="aspect-video w-full rounded-xl bg-black ring-1 ring-default"
+      />
+      <img v-else-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-xl object-cover ring-1 ring-default" fetchpriority="high">
       <ArticleBody :content="article.content" class="text-[1.0625rem]" />
       <USeparator />
       <div class="flex flex-wrap items-center justify-between gap-4">
