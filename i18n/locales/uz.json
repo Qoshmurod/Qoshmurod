@@ -27,7 +27,20 @@
     "back": "Barcha yangiliklar",
     "prev": "Oldingi",
     "next": "Keyingi",
-    "page": "{page} / {total}-sahifa"
+    "page": "{page} / {total}-sahifa",
+    "search": "Yangiliklardan qidirish",
+    "searchLabel": "Qidirish",
+    "results": "{n} ta natija",
+    "noResults": "Hech narsa topilmadi",
+    "noResultsText": "Boshqa so‘z bilan qidirib ko‘ring.",
+    "clear": "Tozalash",
+    "minRead": "{n} daqiqa o‘qish",
+    "share": "Ulashish",
+    "copyLink": "Havolani nusxalash",
+    "copied": "Havola nusxalandi",
+    "related": "Boshqa yangiliklar",
+    "latestOne": "Eng so‘nggi",
+    "rss": "RSS obuna"
   },
   "contacts": {
     "title": "Aloqa",
