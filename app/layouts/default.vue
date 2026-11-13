@@ -1,5 +1,9 @@
 <script setup lang="ts">
-const { data: site } = useSite()
+const { data: site, error: siteError } = await useSite()
+// Website turned off in the Clinika settings: every page shows "temporarily unavailable" (503)
+if (siteError.value?.statusCode === 503 && !useError().value) {
+  throw createError({ statusCode: 503, statusMessage: 'Website turned off', fatal: true })
+}
 const head = useLocaleHead({ seo: true })
 const config = useRuntimeConfig()
 const { locale } = useI18n()
