@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3'
-import type { PageMeta, SiteLocale } from '#shared/types'
+import type { ArticleSummary, ContentLocale, PageMeta, SiteLocale } from '#shared/types'
 import { SITE_LOCALES } from '#shared/types'
 
 interface Envelope<T> {
@@ -46,3 +46,18 @@ export function localeOf(value: unknown): SiteLocale {
 
 export const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 export const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/
+
+/** Language to ask the Clinika API for: Uzbek Cyrillic is made from the Uzbek Latin texts. */
+export function contentLocale(locale: SiteLocale): ContentLocale {
+  return locale === 'uz-cyrl' ? 'uz' : locale
+}
+
+/** Title / excerpt (and body, if present) in Cyrillic for the uz-cyrl version of the site. */
+export function cyrillicArticle<T extends ArticleSummary & { content?: string }>(a: T): T {
+  return {
+    ...a,
+    title: latinToCyrillic(a.title),
+    excerpt: a.excerpt ? latinToCyrillic(a.excerpt) : a.excerpt,
+    ...(a.content !== undefined ? { content: latinToCyrillic(a.content) } : {}),
+  }
+}

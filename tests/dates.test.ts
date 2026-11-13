@@ -20,3 +20,7 @@ test('empty or invalid input', () => {
   assert.equal(formatLongDate('nope', 'uz'), '')
   assert.equal(formatLongDate('2026-01-05T10:00:00Z', 'de'), '5-yanvar, 2026')
 })
+
+test('Uzbek Cyrillic month names', () => {
+  assert.equal(formatLongDate('2026-11-12T10:00:00Z', 'uz-cyrl'), '12-ноябр, 2026')
+})

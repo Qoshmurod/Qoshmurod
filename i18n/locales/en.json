@@ -5,7 +5,8 @@
     "news": "News",
     "contacts": "Contacts",
     "menu": "Menu",
-    "language": "Language"
+    "language": "Language",
+    "theme": "Theme"
   },
   "hero": {
     "fallback": "About our clinic, the latest news and how to reach us",
@@ -26,7 +27,20 @@
     "back": "All news",
     "prev": "Previous",
     "next": "Next",
-    "page": "Page {page} of {total}"
+    "page": "Page {page} of {total}",
+    "search": "Search news",
+    "searchLabel": "Search",
+    "results": "{n} results",
+    "noResults": "Nothing found",
+    "noResultsText": "Try another word.",
+    "clear": "Clear",
+    "minRead": "{n} min read",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "related": "More news",
+    "latestOne": "Latest",
+    "rss": "RSS feed"
   },
   "contacts": {
     "title": "Contacts",
