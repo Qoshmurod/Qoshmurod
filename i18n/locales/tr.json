@@ -5,7 +5,8 @@
     "news": "Haberler",
     "contacts": "İletişim",
     "menu": "Menü",
-    "language": "Dil"
+    "language": "Dil",
+    "theme": "Tema"
   },
   "hero": {
     "fallback": "Kliniğimiz hakkında bilgi, son haberler ve iletişim bilgileri",

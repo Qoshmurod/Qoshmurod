@@ -16,6 +16,8 @@
     "node": ">=22.6"
   },
   "dependencies": {
+    "@iconify-json/lucide": "^1.2.154",
+    "@nuxt/ui": "^4.11.2",
     "@nuxtjs/i18n": "^10.6.0",
     "@tailwindcss/vite": "^4.3.3",
     "nuxt": "^4.5.2",
