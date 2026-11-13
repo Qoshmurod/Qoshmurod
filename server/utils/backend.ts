@@ -16,6 +16,8 @@ export async function backendGet<T>(path: string, query?: Record<string, string 
   } catch (error) {
     const status = (error as { response?: { status?: number } }).response?.status
     if (status === 404) throw createError({ statusCode: 404, statusMessage: 'Not found' })
+    // Turned off in Clinika (Sozlamalar → Veb-sayt): the site shows "temporarily unavailable"
+    if (status === 503) throw createError({ statusCode: 503, statusMessage: 'Website turned off' })
     console.error(`[backend] GET ${path} failed:`, (error as Error).message)
     throw createError({ statusCode: 502, statusMessage: 'Clinic service unavailable' })
   }

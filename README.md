@@ -10,6 +10,7 @@ Saytning hamma ma'lumoti **Clinika** dasturidan olinadi, saytning o‘zida admin
 | Bosh sahifa sarlavhasi, matni, "Biz haqimizda" | **Veb-sayt → Sayt matnlari** |
 | Klinika nomi, logo, telefon, manzil, ish vaqti | **Sozlamalar** |
 | Telegram va Instagram | **Sozlamalar → Kontakt panel** |
+| Saytni yoqish/o‘chirish, sayt manzili, ulanish holati | **Sozlamalar → Veb-sayt** |
 
 "Veb-sayt" bo‘limini super admin va `WEBSITE_MANAGE` ruxsati bor xodim ko‘radi.
 
@@ -53,6 +54,25 @@ sudo certbot --nginx -d klinika.uz -d www.klinika.uz
 ```
 
 Odatiy bo‘linish: `klinika.uz` → sayt, `app.klinika.uz` → Clinika dasturi.
+
+## Alohida serverda (Clinika boshqa serverda)
+
+Sayt Clinika bilan bir serverda bo‘lishi shart emas: u Clinika'ning ochiq API'sidan internet orqali o‘qiydi.
+
+1. Clinika'da **Sozlamalar → Veb-sayt** bo‘limidan "Sayt uchun API manzili"ni nusxalang (masalan `https://app.klinika.uz/api/v1`).
+2. Sayt serverida:
+
+```bash
+git clone https://github.com/Qoshmurod/Qoshmurod.git clinika-website && cd clinika-website
+cp .env.example .env    # NUXT_BACKEND_URL = 1-banddagi manzil, NUXT_PUBLIC_SITE_URL = sayt domeni
+docker compose -f docker-compose.standalone.yml up -d --build
+```
+
+3. nginx va HTTPS — yuqoridagi kabi (`deploy/nginx-website.conf`).
+
+Ulanish holati Clinika'da ko‘rinadi: **Sozlamalar → Veb-sayt → Ulanish holati** ("Sayt ulangan. Oxirgi so‘rov: …").
+O‘sha yerda saytni vaqtincha o‘chirish ham mumkin: o‘chirilganda sayt hamma sahifada "Sayt vaqtincha ishlamayapti" deb ko‘rsatadi,
+yangiliklarni esa Clinika'da yozib, chop etib turish mumkin — yoqilganda saytda chiqadi.
 
 ## Lokal ishga tushirish
 
