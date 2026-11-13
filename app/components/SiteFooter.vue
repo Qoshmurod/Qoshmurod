@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const { data: site } = useSite()
 const year = new Date().getFullYear()
@@ -19,6 +19,7 @@ const instagram = computed(() => socialUrl(site.value?.instagram, 'instagram.com
         <NuxtLink :to="localePath('/')" class="text-muted hover:text-primary">{{ t('nav.home') }}</NuxtLink>
         <NuxtLink :to="localePath('/news')" class="text-muted hover:text-primary">{{ t('nav.news') }}</NuxtLink>
         <NuxtLink :to="`${localePath('/')}#contacts`" class="text-muted hover:text-primary">{{ t('nav.contacts') }}</NuxtLink>
+        <a :href="`/feed/${locale}.xml`" class="flex items-center gap-1.5 text-muted hover:text-primary"><UIcon name="i-lucide-rss" class="size-4" />{{ t('news.rss') }}</a>
       </nav>
       <div class="flex flex-col gap-2 text-sm">
         <a v-if="tel" :href="tel" class="flex items-center gap-2 font-semibold text-highlighted hover:text-primary"><UIcon name="i-lucide-phone" class="size-4" />{{ site?.phone }}</a>

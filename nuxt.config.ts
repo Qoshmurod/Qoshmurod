@@ -53,6 +53,15 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
+    // Basic hardening for every page: no framing by other sites, no MIME sniffing, minimal referrer, no device APIs
+    '/**': {
+      headers: {
+        'X-Frame-Options': 'SAMEORIGIN',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+      },
+    },
     // Images change rarely; the backend already sends a 1-day cache header
     '/media/**': { headers: { 'X-Content-Type-Options': 'nosniff' } },
   },
