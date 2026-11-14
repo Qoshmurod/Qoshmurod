@@ -25,6 +25,7 @@ Brauzer → nginx (klinika.uz) → website (Nuxt, SSR) → Clinika backend (/api
 - Sayt faqat ochiq ma'lumotni oladi: chop etilgan maqolalar va klinika aloqa ma'lumotlari. Bemorlar, to‘lovlar, xodimlar saytga hech qachon chiqmaydi.
 - Havolalar: `/` (o‘zbekcha), `/uz-cyrl` (o‘zbekcha kirill, o‘zbekcha matndan avtomatik), `/ru`, `/en`, `/tr`; yangiliklar `/news`, maqola `/news/<havola>`.
 - Yangiliklar: bosh sahifada eng so‘nggisi katta qilib chiqadi; `/news` da qidiruv (kirill yoki lotin harfida yozsa ham topadi), maqolada o‘qish vaqti, Telegram/Facebook/WhatsApp'da ulashish va "Boshqa yangiliklar".
+- Video: Clinika'da maqolaga 10 daqiqagacha, 4K gacha video qo‘shiladi; server uni 360p…4K sifatlarga tayyorlaydi. Saytdagi pleyer (Plyr) ekranga mos sifatdan boshlaydi, tomoshabin sifatni (4K gacha), tezlikni o‘zi tanlaydi; to‘liq ekran, kichik oynada ko‘rish, telefon va planshetga mos. Video Clinika'dan qismlab (Range) uzatiladi: `/media/video/<id>/<sifat>`, poster `/media/poster/<id>`.
 - RSS: `/feed/uz.xml`, `/feed/ru.xml` … — Telegram kanaliga avtomatik post qiluvchi botlar va yangilik o‘quvchilar uchun.
 - Sayt chop etilgan maqolalar ro‘yxatini 1 daqiqa xotirada saqlaydi: Clinika'da chop etilgan maqola saytda ko‘pi bilan 1 daqiqada chiqadi.
 

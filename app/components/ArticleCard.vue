@@ -8,7 +8,12 @@ const localePath = useLocalePath()
 const formatDate = useFormatDate()
 const cover = computed(() => articleCover(props.article))
 const to = computed(() => localePath(`/news/${props.article.slug}`))
-const videoLabel = computed(() => (props.article.hasVideo ? formatVideoDuration(props.article.videoDuration) || t('news.video') : ''))
+const videoLabel = computed(() => {
+  if (!props.article.hasVideo) return ''
+  return [formatVideoDuration(props.article.videoDuration) || t('news.video'), videoQualityBadge(props.article)].filter(Boolean).join(' · ')
+})
+// No cover: the video's own frame
+const picture = computed(() => cover.value ?? (props.article.hasVideo ? `/media/poster/${props.article.id}` : null))
 </script>
 
 <template>
@@ -19,7 +24,7 @@ const videoLabel = computed(() => (props.article.hasVideo ? formatVideoDuration(
   >
     <div class="relative aspect-[16/10] overflow-hidden bg-primary/10 md:aspect-auto md:min-h-80">
       <span v-if="videoLabel" class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-play" class="size-3.5" />{{ videoLabel }}</span>
-      <img v-if="cover" :src="cover" :alt="props.article.title" class="size-full object-cover transition duration-500 group-hover:scale-105" fetchpriority="high">
+      <img v-if="picture" :src="picture" :alt="props.article.title" class="size-full object-cover transition duration-500 group-hover:scale-105" fetchpriority="high">
       <div v-else class="grid size-full place-items-center bg-gradient-to-br from-primary-600 to-sky-700 text-white/40">
         <UIcon name="i-lucide-newspaper" class="size-20" />
       </div>
@@ -47,7 +52,7 @@ const videoLabel = computed(() => (props.article.hasVideo ? formatVideoDuration(
   <article v-else-if="props.variant === 'compact'" class="group relative flex gap-4 rounded-lg p-2 transition hover:bg-elevated">
     <div class="relative aspect-square w-20 shrink-0 overflow-hidden rounded-lg bg-primary/10 sm:w-24">
       <span v-if="videoLabel" class="absolute right-1 bottom-1 grid size-6 place-items-center rounded-full bg-black/70 text-white"><UIcon name="i-lucide-play" class="size-3.5" /></span>
-      <img v-if="cover" :src="cover" :alt="props.article.title" loading="lazy" class="size-full object-cover">
+      <img v-if="picture" :src="picture" :alt="props.article.title" loading="lazy" class="size-full object-cover">
       <div v-else class="grid size-full place-items-center text-primary/50"><UIcon name="i-lucide-newspaper" class="size-7" /></div>
     </div>
     <div class="min-w-0 space-y-1 py-0.5">
@@ -63,7 +68,7 @@ const videoLabel = computed(() => (props.article.hasVideo ? formatVideoDuration(
     <template #header>
       <div class="relative aspect-[16/10] overflow-hidden bg-primary/10">
         <span v-if="videoLabel" class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-play" class="size-3.5" />{{ videoLabel }}</span>
-        <img v-if="cover" :src="cover" :alt="props.article.title" loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
+        <img v-if="picture" :src="picture" :alt="props.article.title" loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
         <div v-else class="grid size-full place-items-center text-primary/50">
           <UIcon name="i-lucide-newspaper" class="size-12" />
         </div>

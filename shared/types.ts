@@ -25,6 +25,10 @@ export interface ArticleSummary {
   hasVideo?: boolean
   /** Seconds. */
   videoDuration?: number | null
+  /** Qualities to choose from in the player (short side: 2160, 1440, 1080, 720, 480, 360), best first. */
+  videoQualities?: number[]
+  videoWidth?: number | null
+  videoHeight?: number | null
   publishedAt: string | null
   updatedAt: string
 }
