@@ -62,5 +62,28 @@
     "unavailable": "Sayt vaqtincha ishlamayapti",
     "unavailableText": "Birozdan so‘ng qayta urinib ko‘ring.",
     "home": "Bosh sahifaga"
+  },
+  "player": {
+    "restart": "Boshidan",
+    "rewind": "10 soniya orqaga",
+    "play": "Ijro etish",
+    "pause": "Pauza",
+    "forward": "10 soniya oldinga",
+    "seek": "O‘tkazish",
+    "played": "Ko‘rildi",
+    "buffered": "Yuklandi",
+    "currentTime": "Joriy vaqt",
+    "duration": "Davomiyligi",
+    "volume": "Ovoz",
+    "mute": "Ovozni o‘chirish",
+    "unmute": "Ovozni yoqish",
+    "fullscreen": "To‘liq ekran",
+    "exitFullscreen": "To‘liq ekrandan chiqish",
+    "settings": "Sozlamalar",
+    "back": "Orqaga",
+    "speed": "Tezlik",
+    "normal": "Oddiy",
+    "quality": "Sifat",
+    "pip": "Kichik oynada"
   }
 }

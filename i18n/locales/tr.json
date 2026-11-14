@@ -62,5 +62,28 @@
     "unavailable": "Site geçici olarak kullanılamıyor",
     "unavailableText": "Lütfen biraz sonra tekrar deneyin.",
     "home": "Ana sayfaya dön"
+  },
+  "player": {
+    "restart": "Baştan",
+    "rewind": "10 sn geri",
+    "play": "Oynat",
+    "pause": "Duraklat",
+    "forward": "10 sn ileri",
+    "seek": "Sar",
+    "played": "İzlendi",
+    "buffered": "Yüklendi",
+    "currentTime": "Geçen süre",
+    "duration": "Süre",
+    "volume": "Ses",
+    "mute": "Sesi kapat",
+    "unmute": "Sesi aç",
+    "fullscreen": "Tam ekran",
+    "exitFullscreen": "Tam ekrandan çık",
+    "settings": "Ayarlar",
+    "back": "Geri",
+    "speed": "Hız",
+    "normal": "Normal",
+    "quality": "Kalite",
+    "pip": "Resim içinde resim"
   }
 }
