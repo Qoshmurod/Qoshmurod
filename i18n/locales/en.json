@@ -62,5 +62,28 @@
     "unavailable": "The website is temporarily unavailable",
     "unavailableText": "Please try again a little later.",
     "home": "Go to home page"
+  },
+  "player": {
+    "restart": "Restart",
+    "rewind": "Back 10 s",
+    "play": "Play",
+    "pause": "Pause",
+    "forward": "Forward 10 s",
+    "seek": "Seek",
+    "played": "Played",
+    "buffered": "Buffered",
+    "currentTime": "Current time",
+    "duration": "Duration",
+    "volume": "Volume",
+    "mute": "Mute",
+    "unmute": "Unmute",
+    "fullscreen": "Full screen",
+    "exitFullscreen": "Exit full screen",
+    "settings": "Settings",
+    "back": "Back",
+    "speed": "Speed",
+    "normal": "Normal",
+    "quality": "Quality",
+    "pip": "Picture in picture"
   }
 }

@@ -44,7 +44,7 @@ useHead(() => ({
           mainEntityOfPage: pageUrl.value,
           ...(cover.value ? { image: [`${site}${cover.value}`] } : {}),
           ...(video.value
-            ? { video: { '@type': 'VideoObject', name: article.value.title, contentUrl: `${site}${video.value}`, uploadDate: article.value.publishedAt ?? undefined, ...(cover.value ? { thumbnailUrl: `${site}${cover.value}` } : {}), ...(article.value.videoDuration ? { duration: `PT${article.value.videoDuration}S` } : {}) } }
+            ? { video: { '@type': 'VideoObject', name: article.value.title, contentUrl: `${site}${video.value}`, uploadDate: article.value.publishedAt ?? undefined, thumbnailUrl: `${site}${cover.value ?? `/media/poster/${article.value.id}`}`, ...(article.value.videoDuration ? { duration: `PT${article.value.videoDuration}S` } : {}) } }
             : {}),
           publisher: { '@type': 'Organization', name: clinic.value?.hospitalName ?? '', ...(clinic.value?.hasLogo ? { logo: { '@type': 'ImageObject', url: `${site}/media/logo` } } : {}) },
         }),
@@ -85,14 +85,15 @@ useSeoMeta({
     </header>
 
     <div class="container-site max-w-3xl space-y-8 pt-8">
-      <video
-        v-if="video"
-        :src="video"
-        :poster="cover ?? undefined"
-        controls
-        playsinline
-        preload="metadata"
-        class="aspect-video w-full rounded-xl bg-black ring-1 ring-default"
+      <VideoPlayer
+        v-if="article.hasVideo && article.videoQualities?.length"
+        :id="article.id"
+        :qualities="article.videoQualities"
+        :width="article.videoWidth"
+        :height="article.videoHeight"
+        :poster="cover ?? `/media/poster/${article.id}`"
+        :title="article.title"
+        :version="article.updatedAt"
       />
       <img v-else-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-xl object-cover ring-1 ring-default" fetchpriority="high">
       <ArticleBody :content="article.content" class="text-[1.0625rem]" />

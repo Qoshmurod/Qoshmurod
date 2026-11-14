@@ -9,6 +9,12 @@ export function articleVideo(a: ArticleSummary): string | null {
   return a.hasVideo ? `/media/video/${a.id}?v=${encodeURIComponent(a.updatedAt)}` : null
 }
 
+/** "4K" / "HD" badge for the best quality of a video. */
+export function videoQualityBadge(a: ArticleSummary): string {
+  const best = a.videoQualities?.[0] ?? 0
+  return best >= 2160 ? '4K' : best >= 1440 ? '2K' : best >= 720 ? 'HD' : ''
+}
+
 /** 125 → "2:05" */
 export function formatVideoDuration(sec: number | null | undefined): string {
   if (!sec) return ''
