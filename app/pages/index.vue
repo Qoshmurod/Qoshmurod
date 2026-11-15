@@ -17,6 +17,7 @@ const hours = computed(() => (site.value?.workingHours ? `${site.value.workingHo
 const tel = computed(() => phoneHref(site.value?.phone))
 const telegram = computed(() => socialUrl(site.value?.telegram, 't.me'))
 const instagram = computed(() => socialUrl(site.value?.instagram, 'instagram.com'))
+const facebook = computed(() => socialUrl(site.value?.facebook, 'facebook.com'))
 const map = computed(() => mapUrl(site.value?.address))
 const featured = computed(() => news.value?.items[0])
 const side = computed(() => news.value?.items.slice(1, 4) ?? [])
@@ -37,7 +38,7 @@ useHead(() => ({
           ...(site.value.address ? { address: site.value.address } : {}),
           ...(site.value.hasLogo ? { logo: `${config.public.siteUrl.replace(/\/+$/, '')}/media/logo` } : {}),
           ...(site.value.workingHours ? { openingHours: `Mo-Su ${site.value.workingHours.start}-${site.value.workingHours.end}` } : {}),
-          sameAs: [telegram.value, instagram.value].filter(Boolean),
+          sameAs: [telegram.value, instagram.value, facebook.value].filter(Boolean),
         }),
       }]
     : [],
@@ -71,7 +72,6 @@ useSeoMeta({
         </div>
         <div class="flex flex-wrap gap-3">
           <UButton v-if="tel" :href="tel" size="lg" color="neutral" icon="i-lucide-phone" :label="t('hero.call')" class="bg-white text-primary-700 hover:bg-white/90" />
-          <UButton v-if="telegram" :href="telegram" target="_blank" rel="noopener" size="lg" color="neutral" variant="outline" icon="i-lucide-send" :label="t('hero.telegram')" class="bg-transparent text-white ring-white/40 hover:bg-white/10" />
         </div>
       </div>
     </section>
@@ -137,11 +137,12 @@ useSeoMeta({
             <p class="mt-4 text-sm text-muted">{{ t('contacts.hours') }}</p>
             <p class="mt-1 font-semibold text-highlighted tabular-nums">{{ hours }}</p>
           </UCard>
-          <UCard v-if="telegram || instagram">
+          <UCard v-if="telegram || instagram || facebook">
             <span class="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary"><UIcon name="i-lucide-message-circle" class="size-5" /></span>
-            <p class="mt-4 text-sm text-muted">{{ [telegram && t('contacts.telegram'), instagram && t('contacts.instagram')].filter(Boolean).join(' · ') }}</p>
+            <p class="mt-4 text-sm text-muted">{{ [telegram && t('contacts.telegram'), instagram && t('contacts.instagram'), facebook && 'Facebook'].filter(Boolean).join(' · ') }}</p>
             <a v-if="telegram" :href="telegram" target="_blank" rel="noopener" class="mt-1 flex items-center gap-2 font-semibold text-highlighted hover:text-primary"><UIcon name="i-lucide-send" class="size-4 text-dimmed" />{{ socialHandle(telegram) }}</a>
             <a v-if="instagram" :href="instagram" target="_blank" rel="noopener" class="mt-1 flex items-center gap-2 font-semibold text-highlighted hover:text-primary"><UIcon name="i-lucide-instagram" class="size-4 text-dimmed" />{{ socialHandle(instagram) }}</a>
+            <a v-if="facebook" :href="facebook" target="_blank" rel="noopener" class="mt-1 flex items-center gap-2 font-semibold text-highlighted hover:text-primary"><UIcon name="i-lucide-facebook" class="size-4 text-dimmed" />{{ socialHandle(facebook) }}</a>
           </UCard>
         </div>
       </div>
