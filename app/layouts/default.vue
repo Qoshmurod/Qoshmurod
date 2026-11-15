@@ -6,11 +6,10 @@ if (siteError.value?.statusCode === 503 && !useError().value) {
 }
 const head = useLocaleHead({ seo: true })
 const config = useRuntimeConfig()
-const { locale } = useI18n()
 
 useHead(() => ({
   htmlAttrs: { lang: head.value.htmlAttrs?.lang },
-  link: [...(head.value.link ?? []), { rel: 'alternate', type: 'application/rss+xml', title: site.value?.hospitalName ?? 'RSS', href: `/feed/${locale.value}.xml` }],
+  link: [...(head.value.link ?? [])],
   meta: [...(head.value.meta ?? [])],
   titleTemplate: (title?: string) => {
     const name = site.value?.hospitalName ?? ''

@@ -11,6 +11,7 @@ export interface SiteInfo {
   workingHours: { start: string; end: string }
   telegram: string
   instagram: string
+  facebook: string
   texts: { heroTitle: string; heroText: string; about: string }
 }
 
