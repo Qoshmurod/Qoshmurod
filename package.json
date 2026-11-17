@@ -1,6 +1,7 @@
 {
   "name": "clinika-website",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "version": "1.0.0",
   "description": "Public website of the clinic; content is managed in the Clinika staff app (Veb-sayt section)",
