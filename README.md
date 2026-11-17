@@ -119,3 +119,8 @@ shared/utils/       matn formati, havolalar, sanalar (server va brauzer uchun um
 i18n/locales/       uz, ru, en, tr tarjimalari
 tests/              node:test testlari
 ```
+
+## Litsenziya
+
+Loyiha [MIT litsenziyasi](./LICENSE) asosida tarqatiladi.
+Norasmiy o'zbekcha tarjimasi: [LICENSE.uz.md](./LICENSE.uz.md).
