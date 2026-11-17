@@ -1,5 +1,5 @@
-/** "@clinic", "clinic", "t.me/clinic" or a full URL → https link; empty → null. */
-export function socialUrl(value: string | null | undefined, host: 't.me' | 'instagram.com'): string | null {
+/** "@clinic", "clinic", "t.me/clinic" (or instagram.com / facebook.com) or a full URL → https link; empty → null. */
+export function socialUrl(value: string | null | undefined, host: 't.me' | 'instagram.com' | 'facebook.com'): string | null {
   const v = (value ?? '').trim()
   if (!v) return null
   if (/^https?:\/\//i.test(v)) return v

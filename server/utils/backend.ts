@@ -60,6 +60,7 @@ export function cyrillicArticle<T extends ArticleSummary & { content?: string }>
     ...a,
     title: latinToCyrillic(a.title),
     excerpt: a.excerpt ? latinToCyrillic(a.excerpt) : a.excerpt,
+    ...(a.images ? { images: a.images.map((img) => ({ ...img, caption: latinToCyrillic(img.caption) })) } : {}),
     ...(a.content !== undefined ? { content: latinToCyrillic(a.content) } : {}),
   }
 }

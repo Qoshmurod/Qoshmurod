@@ -15,6 +15,14 @@ export interface SiteInfo {
   texts: { heroTitle: string; heroText: string; about: string }
 }
 
+/** A gallery picture; "[rasm N]" in the text shows images[N-1] there. Files: /media/image/<article>/<id>, /media/thumb/… */
+export interface ArticleImage {
+  id: string
+  width: number
+  height: number
+  caption: string
+}
+
 export interface ArticleSummary {
   id: string
   slug: string
@@ -26,6 +34,8 @@ export interface ArticleSummary {
   hasVideo?: boolean
   /** Seconds. */
   videoDuration?: number | null
+  /** Gallery, in the order set in Clinika. */
+  images?: ArticleImage[]
   /** Qualities to choose from in the player (short side: 2160, 1440, 1080, 720, 480, 360), best first. */
   videoQualities?: number[]
   videoWidth?: number | null

@@ -85,5 +85,14 @@
     "normal": "Normal",
     "quality": "Quality",
     "pip": "Picture in picture"
+  },
+  "gallery": {
+    "title": "Pictures",
+    "picture": "Picture {n}",
+    "close": "Close",
+    "prev": "Previous picture",
+    "next": "Next picture",
+    "swipe": "Swipe to browse",
+    "count": "{n} pictures"
   }
 }

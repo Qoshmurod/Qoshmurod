@@ -5,8 +5,22 @@
  */
 export type ContentBlock =
   | { type: 'heading'; text: string }
+  | { type: 'image'; n: number }
   | { type: 'paragraph'; lines: string[] }
   | { type: 'list'; items: string[] }
+
+/** A line "[rasm 2]" (also in Cyrillic or other languages) shows gallery picture 2 at that place. */
+const IMAGE_LINE = /^\[\s*(?:rasm|расм|image|img|photo|фото|resim|изображение)\s*(\d{1,2})\s*\]$/iu
+
+/** Picture numbers used inside the text, so the gallery under it can leave them out. */
+export function inlineImageNumbers(source: string): Set<number> {
+  const used = new Set<number>()
+  for (const raw of source.split(/\r?\n/)) {
+    const m = IMAGE_LINE.exec(raw.trim())
+    if (m) used.add(Number(m[1]))
+  }
+  return used
+}
 
 export function parseBlocks(source: string): ContentBlock[] {
   const blocks: ContentBlock[] = []
@@ -22,8 +36,12 @@ export function parseBlocks(source: string): ContentBlock[] {
 
   for (const raw of source.replace(/\r\n?/g, '\n').split('\n')) {
     const line = raw.trim()
+    const image = IMAGE_LINE.exec(line)
     if (!line) {
       flush()
+    } else if (image) {
+      flush()
+      blocks.push({ type: 'image', n: Number(image[1]) })
     } else if (/^##(\s|$)/.test(line)) {
       flush()
       const text = line.slice(2).trim()

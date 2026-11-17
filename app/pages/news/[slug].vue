@@ -21,6 +21,17 @@ const video = computed(() => (article.value ? articleVideo(article.value) : null
 const site = config.public.siteUrl.replace(/\/+$/, '')
 const pageUrl = computed(() => `${site}${localePath(`/news/${slug.value}`)}`)
 const minutes = computed(() => readingMinutes(article.value?.content))
+const hasText = computed(() => !!article.value?.content.trim())
+// Gallery: "[rasm N]" lines show pictures in the text, the rest go in the grid; any picture opens full screen
+const images = computed(() => article.value?.images ?? [])
+const inlineUsed = computed(() => inlineImageNumbers(article.value?.content ?? ''))
+const lightbox = ref<number | null>(null)
+// Link previews (Telegram, Facebook): the cover, else the first picture, else the video frame
+const sharePicture = computed(() => {
+  const a = article.value
+  if (!a) return null
+  return cover.value ?? (images.value[0] ? imageUrl(a.id, images.value[0].id) : a.hasVideo ? `/media/poster/${a.id}` : null)
+})
 const { data: clinic } = useSite()
 
 // Three more articles of the same language, newest first
@@ -42,7 +53,9 @@ useHead(() => ({
           datePublished: article.value.publishedAt ?? undefined,
           dateModified: article.value.updatedAt,
           mainEntityOfPage: pageUrl.value,
-          ...(cover.value ? { image: [`${site}${cover.value}`] } : {}),
+          ...(sharePicture.value || images.value.length
+            ? { image: [...new Set([sharePicture.value, ...images.value.map((img) => imageUrl(article.value!.id, img.id))].filter(Boolean).map((u) => `${site}${u}`))] }
+            : {}),
           ...(video.value
             ? { video: { '@type': 'VideoObject', name: article.value.title, contentUrl: `${site}${video.value}`, uploadDate: article.value.publishedAt ?? undefined, thumbnailUrl: `${site}${cover.value ?? `/media/poster/${article.value.id}`}`, ...(article.value.videoDuration ? { duration: `PT${article.value.videoDuration}S` } : {}) } }
             : {}),
@@ -58,9 +71,9 @@ useSeoMeta({
   ogTitle: () => article.value?.title ?? '',
   ogDescription: () => article.value?.excerpt ?? '',
   ogType: 'article',
-  ogImage: () => (cover.value ? `${site}${cover.value}` : undefined),
+  ogImage: () => (sharePicture.value ? `${site}${sharePicture.value}` : undefined),
   articlePublishedTime: () => article.value?.publishedAt ?? undefined,
-  twitterCard: () => (cover.value ? 'summary_large_image' : 'summary'),
+  twitterCard: () => (sharePicture.value ? 'summary_large_image' : 'summary'),
 })
 </script>
 
@@ -75,7 +88,7 @@ useSeoMeta({
             <UIcon name="i-lucide-calendar" class="size-4" />
             <time :datetime="article.publishedAt ?? undefined">{{ formatDate(article.publishedAt) }}</time>
           </span>
-          <span class="flex items-center gap-1.5">
+          <span v-if="hasText" class="flex items-center gap-1.5">
             <UIcon name="i-lucide-clock-3" class="size-4" />
             {{ t('news.minRead', { n: minutes }) }}
           </span>
@@ -96,7 +109,9 @@ useSeoMeta({
         :version="article.updatedAt"
       />
       <img v-else-if="cover" :src="cover" :alt="article.title" class="aspect-[16/9] w-full rounded-xl object-cover ring-1 ring-default" fetchpriority="high">
-      <ArticleBody :content="article.content" class="text-[1.0625rem]" />
+      <ArticleBody v-if="hasText" :content="article.content" :article-id="article.id" :images="images" class="text-[1.0625rem]" @open="lightbox = $event" />
+      <ArticleGallery v-if="images.length" :article-id="article.id" :images="images" :skip="inlineUsed" @open="lightbox = $event" />
+      <ImageLightbox v-model:index="lightbox" :article-id="article.id" :images="images" />
       <USeparator />
       <div class="flex flex-wrap items-center justify-between gap-4">
         <ShareButtons :url="pageUrl" :title="article.title" />

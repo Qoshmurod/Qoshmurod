@@ -85,5 +85,14 @@
     "normal": "Oddiy",
     "quality": "Sifat",
     "pip": "Kichik oynada"
+  },
+  "gallery": {
+    "title": "Rasmlar",
+    "picture": "{n}-rasm",
+    "close": "Yopish",
+    "prev": "Oldingi rasm",
+    "next": "Keyingi rasm",
+    "swipe": "Varaqlash uchun suring",
+    "count": "{n} ta rasm"
   }
 }

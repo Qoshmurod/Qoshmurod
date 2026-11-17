@@ -27,3 +27,8 @@ test('mapUrl encodes the address', () => {
   assert.equal(mapUrl("Toshkent sh., Bunyodkor ko'chasi 1"), "https://www.google.com/maps/search/?api=1&query=Toshkent%20sh.%2C%20Bunyodkor%20ko'chasi%201")
   assert.equal(mapUrl('  '), null)
 })
+
+test('facebook page links', () => {
+  assert.equal(socialUrl('shifo.klinika', 'facebook.com'), 'https://facebook.com/shifo.klinika')
+  assert.equal(socialUrl('https://www.facebook.com/profile.php?id=1', 'facebook.com'), 'https://www.facebook.com/profile.php?id=1')
+})

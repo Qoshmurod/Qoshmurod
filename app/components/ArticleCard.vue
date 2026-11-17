@@ -13,7 +13,9 @@ const videoLabel = computed(() => {
   return [formatVideoDuration(props.article.videoDuration) || t('news.video'), videoQualityBadge(props.article)].filter(Boolean).join(' · ')
 })
 // No cover: the video's own frame
-const picture = computed(() => cover.value ?? (props.article.hasVideo ? `/media/poster/${props.article.id}` : null))
+// No cover: the video's own frame, else the first gallery picture (full size for the large card)
+const picture = computed(() => articlePicture(props.article, props.variant !== 'featured'))
+const imageCount = computed(() => props.article.images?.length ?? 0)
 </script>
 
 <template>
@@ -23,6 +25,7 @@ const picture = computed(() => cover.value ?? (props.article.hasVideo ? `/media/
     class="group relative grid overflow-hidden rounded-xl bg-default ring-1 ring-default transition hover:shadow-lg hover:ring-primary/40 md:grid-cols-[1.2fr_1fr]"
   >
     <div class="relative aspect-[16/10] overflow-hidden bg-primary/10 md:aspect-auto md:min-h-80">
+      <span v-if="imageCount > 1" class="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-images" class="size-3.5" />{{ imageCount }}</span>
       <span v-if="videoLabel" class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-play" class="size-3.5" />{{ videoLabel }}</span>
       <img v-if="picture" :src="picture" :alt="props.article.title" class="size-full object-cover transition duration-500 group-hover:scale-105" fetchpriority="high">
       <div v-else class="grid size-full place-items-center bg-gradient-to-br from-primary-600 to-sky-700 text-white/40">
@@ -67,7 +70,8 @@ const picture = computed(() => cover.value ?? (props.article.hasVideo ? `/media/
   <UCard v-else class="group relative h-full transition hover:shadow-md hover:ring-primary/40" :ui="{ root: 'flex flex-col overflow-hidden', header: 'p-0 sm:p-0', body: 'flex flex-1 flex-col gap-2' }">
     <template #header>
       <div class="relative aspect-[16/10] overflow-hidden bg-primary/10">
-        <span v-if="videoLabel" class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-play" class="size-3.5" />{{ videoLabel }}</span>
+        <span v-if="imageCount > 1" class="absolute right-2 bottom-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-images" class="size-3.5" />{{ imageCount }}</span>
+      <span v-if="videoLabel" class="absolute bottom-2 left-2 inline-flex items-center gap-1 rounded-md bg-black/70 px-2 py-0.5 text-xs font-medium text-white tabular-nums"><UIcon name="i-lucide-play" class="size-3.5" />{{ videoLabel }}</span>
         <img v-if="picture" :src="picture" :alt="props.article.title" loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
         <div v-else class="grid size-full place-items-center text-primary/50">
           <UIcon name="i-lucide-newspaper" class="size-12" />

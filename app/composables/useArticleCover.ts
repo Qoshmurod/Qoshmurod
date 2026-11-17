@@ -20,3 +20,13 @@ export function formatVideoDuration(sec: number | null | undefined): string {
   if (!sec) return ''
   return `${Math.floor(sec / 60)}:${String(Math.round(sec) % 60).padStart(2, '0')}`
 }
+
+export function imageUrl(articleId: string, imageId: string, thumb = false): string {
+  return `/media/${thumb ? 'thumb' : 'image'}/${articleId}/${imageId}`
+}
+
+/** Picture for cards and link previews: the cover, else the video frame, else the first gallery picture. */
+export function articlePicture(a: ArticleSummary, thumb = true): string | null {
+  const first = a.images?.[0]
+  return articleCover(a) ?? (a.hasVideo ? `/media/poster/${a.id}` : first ? imageUrl(a.id, first.id, thumb) : null)
+}
